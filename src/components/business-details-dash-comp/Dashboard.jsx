@@ -2,11 +2,12 @@
 import React from 'react';
 import { BiChevronDown } from "react-icons/bi";
 import ChartComponent from '../HomeComponents/PieChart';
-import { dataset } from '@/vendor/dataset';
+import { dashboarddataset } from './Dashboarddataset';
 import DataTable from '../Table/DataTable';
+import Link from "next/link";
 
 const Dashboard = () => {
-    const data = dataset;
+    const data = dashboarddataset;
 
     let columns = [
         { title: "Transaction ID" },
@@ -19,14 +20,14 @@ const Dashboard = () => {
             render: (data, type, row) => {
                 return `
                
-            <a href="#0"
-            data-id="${row[8]}"
-             class=""
-             data-bs-toggle="offcanvas"
-             data-bs-target="#"
-             aria-controls="">
-            Details
-         </a>
+                <a href="/"
+                data-id="${row[8]}"
+                 class="bg-[rgba(0,204,255,1)] py-[5px] px-[10px] text-[white] text-[14px] rounded-[10px]"
+                 data-bs-toggle="offcanvas"
+                 data-bs-target="#"
+                 aria-controls="">
+                Preview
+             </a>
            
             `;
             },
@@ -207,13 +208,19 @@ const Dashboard = () => {
                     </div>
                 </div>
                 <div className="">
-                    <div className="container-fluid bg-[#FFFFFF] py-[20px] px-[30px] rounded-2xl">
-
-                        <div className="container lg:mt-[50px] mt-[20px] lg:overflow-hidden w-full overflow-x-scroll">
-                            <DataTable
-                             data={data}
-                             columns={columns}
-                            />
+                    <div className="container-fluid bg-[#FFFFFF] p-[48px] rounded-[20px]">
+                        <div className="container w-full">
+                            <div className="container flex justify-between">
+                                <div className="container">
+                                    <p className="lg:text-[20px] text-[15px] font-[600] mb-[20px]">Manage Contact</p>
+                                </div>
+                                <div className="container mx-auto w-full flex lg:items-end items-start justify-start lg:justify-end">
+                                    <Link href={"/payouts/reqpout"} className="mx-auto lg:text-[12px] text-[12px] border border-[rgba(0,0,0,0.4)] py-[10px] lg:px-[20px] px-[10px] rounded-[10px] cursor-pointer font-[600] lg:mb-[20px]">+ Request Payout</Link>
+                                </div>
+                            </div>
+                            <div className="lg:overflow-hidden w-full overflow-x-scroll">
+                                <DataTable data={data} columns={columns} />
+                            </div>
                         </div>
 
                     </div>
