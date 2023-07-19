@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import settingTabData from './SettingsTabData';
 
 const Settings = () => {
   const [currentTab, setCurrentTab] = useState(0);
@@ -13,9 +14,11 @@ const Settings = () => {
     "aPI Key & webhook",
   ];
 
-  const tabContentData = [
+  const handleClickOption = (i) => {
+    setCurrentTab(i)
+  }
 
-  ]
+
   return (
     <>
       <div className="">
@@ -29,9 +32,9 @@ const Settings = () => {
             }
           </div>
           <div className="">
-            {/* {
-              tabContentData[currentTab].content
-            } */}
+            {
+              settingTabData[currentTab].content
+            }
           </div>
         </div>
       </div>
